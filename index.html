@@ -1,276 +1,301 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="robots" content="noindex, nofollow, noarchive">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificado Digital - CONALEP</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación Conalep</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Fondo grisáceo fuera del cuadro */
+            color: #333;
+        }
 
-<style>
-body { background-color: #fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.header-container { padding: 15px 0; }
-.logo-conalep { height: 30px; }
-.my-panel { border: 1px solid #ddd; border-radius: 4px; margin-top: 5px; max-width: 750px; margin-left: auto; margin-right: auto; box-shadow: 0 1px 1px rgba(0,0,0,.05); }
-.my-panel-heading { background-color: #f5f5f5; padding: 10px 15px; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 13px; color: #333; }
-.panel-body-my { padding: 20px; }
-.search-label { font-size: 14px; font-weight: normal; margin-bottom: 10px; display: block; }
-.form-control { height: 34px; font-size: 14px; border-radius: 4px; -webkit-user-select: text; user-select: text; }
-.btn-buscar-my { background-color: #337ab7; color: white; border: 1px solid #2e6da4; padding: 6px 12px; border-radius: 4px; margin-top: 10px; }
-.help-section-top { margin: 15px 0; padding-top: 15px; border-top: 1px solid #eee; }
-.help-title { font-weight: bold; font-size: 14px; margin-bottom: 8px; display: block; }
-.help-table { width: 100%; font-size: 14px; }
-.help-label { font-weight: bold; width: 35%; }
-.alert-registro-oficial { background-color: #f5f5f5; border: 1px solid #ddd; padding: 15px; font-size: 13px; line-height: 1.4; margin-bottom: 20px; border-radius: 4px; color: #333; }
-.section-title { font-size: 14px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; margin: 25px 0 10px 0; color: #333; }
-.table-data-my { width: 100%; font-size: 13px; }
-.table-data-my td { padding: 8px 0; border-bottom: 1px solid #f9f9f9; }
-.text-bold-my { font-weight: bold; width: 40%; }
-.well-siged-my { background-color: #dff0d8; border: 1px solid #d6e9c6; color: #3c763d; padding: 15px; font-size: 13px; border-radius: 4px; margin-top: 20px; }
-.btn-siged-my { background-color: #fff; border: 1px solid #ccc; padding: 5px 10px; font-size: 12px; margin-top: 10px; border-radius: 4px; }
-.portal-link { text-align: right; margin-top: 20px; }
-.portal-link a { font-size: 12px; color: #337ab7; text-decoration: none; }
+        /* Contenedor Principal con el borde que señalaste */
+        .wrapper {
+            max-width: 580px; 
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 0; /* Quitamos padding para que los encabezados toquen el borde */
+            box-sizing: border-box;
+        }
 
-@media print { body { display: none !important; } }
+        .header-logo {
+            padding: 20px 0 10px 20px;
+        }
 
-@media (max-width: 768px) {
-.my-panel { border-left: none; border-right: none; border-radius: 0; width: 100%; max-width: 100%; }
-.logo-conalep { max-width: 100%; height: auto; }
-.table-data-my td { word-break: break-all; }
-}
+        .header-logo img {
+            display: block;
+            max-width: 130px; 
+            height: auto;
+        }
 
-@media (max-width: 480px) {
-.panel-body-my { padding: 15px; }
-.text-bold-my { width: 45%; font-size: 12px; }
-.btn-buscar-my { width: 100%; }
-}
+        /* --- SECCIÓN DE VALIDACIÓN (La "tabla" de arriba) --- */
+        .validation-header {
+            background-color: #f5f5f5; /* Gris muy claro */
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
 
-.table-data-my,
-.help-table{
-width:100%;
-display:block;
-overflow-x:auto;
--webkit-overflow-scrolling:touch;
-}
-</style>
+        /* El icono de la ruedita/sol */
+        .validation-header::before {
+            content: "✸"; 
+            margin-right: 10px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .search-container {
+            padding: 20px;
+        }
+
+        .search-container label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .example {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        /* BOTÓN AZUL CON LUPA */
+        .btn-search {
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-search:hover { background-color: #286090; }
+
+        /* SECCIÓN AYUDA */
+        .help-center {
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .help-title { font-size: 14px; font-weight: bold; margin-bottom: 15px; color: #444; }
+
+        .contact-info {
+            font-size: 13px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .contact-row { display: flex; margin-bottom: 10px; }
+        .label-c { font-weight: bold; width: 130px; }
+        .value-c { color: #337ab7; }
+
+        /* CUADRO GRIS INFORMATIVO */
+        .alert-text {
+            background-color: #e9ecef;
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+            margin: 20px;
+            text-align: justify;
+            border-radius: 2px;
+        }
+
+        /* BLOQUES DE DATOS */
+        .group-title {
+            background-color: #fdfdfd;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 13px;
+            border: 1px solid #eee;
+            border-left: none;
+            border-right: none;
+            color: #333;
+        }
+
+        .data-item {
+            border-bottom: 1px solid #eee;
+            padding: 12px 20px;
+            display: flex;
+            font-size: 13px;
+        }
+
+        .data-label { font-weight: bold; width: 180px; flex-shrink: 0; }
+        .data-value { color: #666; word-break: break-word; }
+
+        /* SIGED BOX */
+        .siged-box {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            padding: 15px;
+            margin: 20px;
+            font-size: 13px;
+            border-radius: 4px;
+        }
+
+        .btn-siged {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .portal-footer {
+            text-align: right;
+            padding: 0 20px 20px 0;
+            font-size: 12px;
+        }
+
+        .portal-footer a { color: #337ab7; text-decoration: none; }
+
+        /* --- RESPONSIVIDAD --- */
+        @media (max-width: 600px) {
+            .wrapper { margin: 10px; }
+            .data-item { flex-direction: column; }
+            .data-label { width: 100%; margin-bottom: 4px; font-size: 12px; }
+            .data-value { font-size: 13px; }
+            .header-logo { padding-left: 15px; }
+        }
+    </style>
 </head>
+<body>
 
-<body oncontextmenu="return false;">
+    <div class="wrapper">
+        <div class="header-logo">
+            <img src="imagen/logo" alt="Logo" onerror="this.src='imagen/logo.png';">
+        </div>
 
-<script>
+        <div class="validation-header">
+            Validación de certificados electrónicos Modelo 2018:
+        </div>
 
-/* BLOQUEO DEVTOOLS AVANZADO */
-(function(){
-setInterval(function(){
-if(window.outerHeight-window.innerHeight>200 || window.outerWidth-window.innerWidth>200){
-document.body.innerHTML="";
-}
-},1000);
-})();
+        <div class="search-container">
+            <label>¿Desea consultar un folio de certificado CONALEP?</label>
+            <input type="text" value="1c421f92-09ba-443b-b068-980725c5f3ae">
+            <div class="example">Ejemplo: 1a23b45c-de67-8fg0-1111-6f36ebbbd44</div>
+            <button class="btn-search">
+                <span style="font-size: 12px;">🔍</span> buscar
+            </button>
+        </div>
 
-/* ANTI DEBUGGER */
-(function(){
-setInterval(function(){
-debugger;
-},4000);
-})();
+        <div class="help-center">
+            <div class="help-title">¿Cómo te podemos ayudar?</div>
+            <div class="contact-info">
+                <div class="contact-row">
+                    <div class="label-c">Correo electrónico:</div>
+                    <div class="value-c">contacto@conalep.edu.mx</div>
+                </div>
+                <div class="contact-row">
+                    <div class="label-c">Teléfono:</div>
+                    <div class="value-c">555 480 3700 Ext. 2836, 2881 y 2848</div>
+                </div>
+            </div>
+        </div>
 
-/* BLOQUEAR INSPECCION BASICA */
-document.onkeydown=function(e){
-if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&e.keyCode==73)||(e.ctrlKey&&e.shiftKey&&e.keyCode==74)||(e.ctrlKey&&e.keyCode==85)){return false;}
-};
+        <div class="alert-text">
+            La siguiente información fue encontrada en los registros de Control Escolar de esta institución educativa, lo que valida la autenticidad del certificado de estudios emitido de manera electrónica.
+        </div>
 
-/* BLOQUEAR COPIA */
-document.addEventListener("copy",function(e){e.preventDefault();});
+        <div class="group-title">Datos del estudiante</div>
+        <div class="data-item">
+            <div class="data-label">Nombre(s) y apellido(s):</div>
+            <div class="data-value">Queluhi Pezquera Cruz</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Número de matrícula:</div>
+            <div class="data-value">191510201-4</div>
+        </div>
 
-/* ANTI IFRAME */
-if(window.top!==window.self){document.body.innerHTML="";}
+        <div class="group-title">Datos del plantel o servicio educativo</div>
+        <div class="data-item">
+            <div class="data-label">Institución educativa emisora:</div>
+            <div class="data-value">Colegio Nacional de Educación Profesional Técnica</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Plantel o servicio educativo:</div>
+            <div class="data-value">Calpam</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Clave de Centro de Trabajo:</div>
+            <div class="data-value">21DPT0004U</div>
+        </div>
 
-/* ANTI BOT */
-var _t0=Date.now();
-window._human=function(){return(Date.now()-_t0)>1500;};
+        <div class="group-title">Trayectoria académica y datos del documento</div>
+        <div class="data-item">
+            <div class="data-label">Plan de estudios:</div>
+            <div class="data-value">Bachillerato, con la carrera Técnica en Mantenimiento de sistemas automáticos y el trayecto específico en Automatización y control de procesos industriales</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Promedio:</div>
+            <div class="data-value">9.5 (Nueve punto cinco)</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Créditos obtenidos:</div>
+            <div class="data-value">378 créditos obtenidos de un total de 378</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Periodo de estudios:</div>
+            <div class="data-value">Del 1 de agosto de 2019 al 15 de julio de 2022</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Tipo documento:</div>
+            <div class="data-value">Certificado de Terminación de Estudios o Certificado de Formación Profesional</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Estatus del documento:</div>
+            <div class="data-value">Registrado en el MEC</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Folio:</div>
+            <div class="data-value">1c421f92-09ba-443b-b068-980725c5f3ae</div>
+        </div>
+        <div class="data-item">
+            <div class="data-label">Fecha y hora de timbrado:</div>
+            <div class="data-value">2022-07-19 10:21:35</div>
+        </div>
 
-</script>
+        <div class="siged-box">
+            Consulta la información del certificado en la página oficial del SIGED dando clic en el siguiente botón:<br>
+            <button class="btn-siged">Verificar en SIGED</button>
+        </div>
 
-<header class="header-container">
-<div class="container">
-<img src="imagen/logo.png" class="logo-conalep">
-</div>
-</header>
-
-<main class="container">
-<div class="my-panel">
-
-<div class="my-panel-heading">
-<span class="glyphicon glyphicon-certificate"></span> Validación de certificados electrónicos:
-</div>
-
-<div class="panel-body-my">
-
-<label class="search-label">
-¿Desea consultar un folio de certificado CONALEP?
-</label>
-
-<input type="text" id="folioInput" class="form-control" autocomplete="off">
-
-<p style="font-size:11px;color:#777;margin-top:5px;">
-Ejemplo: 1a23b45c-de67-8fg0-1111-6f36eebbbd44
-</p>
-
-<button class="btn-buscar-my" onclick="vF()">
-<span class="glyphicon glyphicon-search"></span> buscar
-</button>
-
-<div id="resultado" style="display:none;"></div>
-
-</div>
-</div>
-</main>
-
-<script>
-
-(function(){
-
-// Folio codificado Base64
-var _folio=atob("M2Q2MDczMDYtMjhhMy00MmJmLTlhNmQtNzhlNWRjODMyYmUy");
-
-// Función para validar UUID
-function _uuid(u){
-return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(u);
-}
-
-window.vF=function(){
-
-if(!_human()){alert("Espere un momento antes de consultar.");return;}
-
-var i=document.getElementById("folioInput").value.trim();
-var r=document.getElementById("resultado");
-
-if(!_uuid(i)){alert("Formato de folio inválido.");return;}
-
-if(i===_folio){
-
-window.location.hash="token_"+btoa(i).substring(0,10);
-
-// Datos codificados en Base64
-var d={
-n:atob("TWFydMOtbiBHdWFkYWx1cGUgVGVyw6FuIEx1Y2lv"),
-m:atob("MzA0MjAxMi0xNQ=="),
-p:atob("Q29uYWxlcCAwNTQgVGFtcGljbw=="),
-c:atob("VMOpY25pY2EgZW4gc2lzdGVtYXMgY29tcHV0YWNpb25hbGVz"),
-pr:atob("OC4wIChPY2hvIHB1bnRvIGNlcm8p")
-};
-
-r.innerHTML=` 
-
-<div class="help-section-top">
-<span class="help-title">¿Cómo te podemos ayudar?</span>
-<table class="help-table">
-<tr>
-<td class="help-label">Correo electrónico:</td>
-<td><a href="mailto:contacto@conalep.edu.mx">contacto@conalep.edu.mx</a></td>
-</tr>
-<tr>
-<td class="help-label">Teléfono:</td>
-<td>555 480 3700 Ext. 2836, 2881 y 2848</td>
-</tr>
-</table>
-</div>
-
-<div class="alert-registro-oficial">
-La siguiente información fue encontrada en los registros de Control Escolar de esta institución educativa, lo que valida la autenticidad del certificado de estudios emitido de manera electrónica.
-</div>
-
-<div class="section-title">Datos del estudiante</div>
-
-<table class="table-data-my">
-<tr>
-<td class="text-bold-my">Nombre(s) y apellido(s):</td>
-<td>${d.n}</td>
-</tr>
-<tr>
-<td class="text-bold-my">Número de matrícula:</td>
-<td>${d.m}</td>
-</tr>
-</table>
-
-<div class="section-title">Datos del plantel o servicio educativo</div>
-
-<table class="table-data-my">
-<tr>
-<td class="text-bold-my">Institución educativa emisora:</td>
-<td>Colegio Nacional de Educación Profesional Técnica</td>
-</tr>
-<tr>
-<td class="text-bold-my">Plantel o servicio educativo:</td>
-<td>${d.p}</td>
-</tr>
-<tr>
-<td class="text-bold-my">Clave de Centro de Trabajo:</td>
-<td>28DPT0001Q</td>
-</tr>
-</table>
-
-<div class="section-title">Trayectoria académica y datos del documento</div>
-
-<table class="table-data-my">
-<tr>
-<td class="text-bold-my">Plan de estudios:</td>
-<td>Bachillerato, con la carrera ${d.c}</td>
-</tr>
-<tr>
-<td class="text-bold-my">Promedio:</td>
-<td>${d.pr}</td>
-</tr>
-<tr>
-<td class="text-bold-my">Créditos obtenidos:</td>
-<td>378 créditos obtenidos de un total de 378</td>
-</tr>
-<tr>
-<td class="text-bold-my">Periodo de estudios:</td>
-<td>Del 20 de agosto de 2012 al 14 de julio del 2015</td>
-</tr>
-<tr>
-<td class="text-bold-my">Tipo documento:</td>
-<td>Certificado de Terminación de Estudios o Certificado de Formación Profesional</td>
-</tr>
-<tr>
-<td class="text-bold-my">Estatus del documento:</td>
-<td>Registrado en el MEC</td>
-</tr>
-<tr>
-<td class="text-bold-my">Folio:</td>
-<td>${i}</td>
-</tr>
-<tr>
-<td class="text-bold-my">Fecha y hora de timbrado:</td>
-<td>13/03/21 09:01:54</td>
-</tr>
-</table>
-
-<div class="well-siged-my">
-Consulta la información del certificado en la página oficial del SIGED dando clic en el siguiente botón:
-<br>
-<button class="btn-siged-my" onclick="window.open('https://siged.sep.gob.mx/SIGED/','_blank')">Verificar en SIGED</button>
-</div>
-
-<div class="portal-link">
-<a href="https://www.gob.mx/conalep" target="_blank">Portal CONALEP</a>
-</div>
-
-`;
-
-r.style.display="block";
-
-}else{
-alert("Folio no encontrado en el sistema nacional.");
-r.style.display="none";
-}
-
-}
-
-})();
-</script>
+        <div class="portal-footer">
+            <a href="#">Portal CONALEP</a>
+        </div>
+    </div>
 
 </body>
 </html>
