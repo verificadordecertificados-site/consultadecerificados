@@ -5,231 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validación Conalep</title>
     <style>
+        /* Estilos Base */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa; /* Fondo grisáceo fuera del cuadro */
+            background-color: #fff;
             color: #333;
         }
 
-        /* Contenedor Principal con el borde que señalaste */
-        .wrapper {
-            max-width: 580px; 
-            margin: 20px auto;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 0; /* Quitamos padding para que los encabezados toquen el borde */
-            box-sizing: border-box;
-        }
-
+        /* Logo en la parte superior izquierda */
         .header-logo {
-            padding: 20px 0 10px 20px;
+            padding: 15px 0 10px 20px;
         }
 
         .header-logo img {
+            /* Esto cargará la imagen desde tu carpeta 'imagen' */
             display: block;
-            max-width: 130px; 
+            max-width: 140px; 
             height: auto;
         }
 
-        /* --- SECCIÓN DE VALIDACIÓN (La "tabla" de arriba) --- */
-        .validation-header {
-            background-color: #f5f5f5; /* Gris muy claro */
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            font-size: 13px;
-            color: #555;
+        /* Contenedor que se adapta a PC y Celular */
+        .wrapper {
+            max-width: 550px; /* Ancho similar al de la captura */
+            margin: 0 auto;
+            padding: 0 15px 40px 15px;
+        }
+
+        .title-container {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
         }
 
-        /* El icono de la ruedita/sol */
-        .validation-header::before {
-            content: "✸"; 
-            margin-right: 10px;
-            font-size: 18px;
-            color: #444;
+        .title-container::before {
+            content: "⚙"; /* El icono pequeño de la captura */
+            margin-right: 8px;
+            font-size: 16px;
         }
 
-        .search-container {
-            padding: 20px;
+        /* Buscador */
+        .search-section {
+            margin-bottom: 30px;
         }
 
-        .search-container label {
+        .search-section label {
             display: block;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #444;
+            font-size: 13.5px;
+            margin-bottom: 8px;
         }
 
-        .search-container input {
+        .search-section input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 3px;
             box-sizing: border-box;
             font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
+            color: #666;
         }
 
         .example {
             font-size: 11px;
             color: #999;
-            margin-bottom: 15px;
+            margin: 5px 0 15px 0;
         }
 
-        /* BOTÓN AZUL CON LUPA */
-        .btn-search {
+        .btn-blue {
             background-color: #337ab7;
             color: white;
             border: none;
-            padding: 7px 14px;
+            padding: 8px 18px;
             border-radius: 4px;
             font-size: 13px;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        .btn-search:hover { background-color: #286090; }
-
-        /* SECCIÓN AYUDA */
+        /* Sección de Ayuda */
         .help-center {
-            padding: 15px 20px;
             text-align: center;
             border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-bottom: 25px;
         }
 
-        .help-title { font-size: 14px; font-weight: bold; margin-bottom: 15px; color: #444; }
+        .help-title { font-size: 14px; margin-bottom: 20px; }
 
         .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             font-size: 13px;
             text-align: left;
-            display: inline-block;
         }
 
-        .contact-row { display: flex; margin-bottom: 10px; }
-        .label-c { font-weight: bold; width: 130px; }
-        .value-c { color: #337ab7; }
+        .contact-row {
+            display: flex;
+            justify-content: flex-start;
+        }
 
-        /* CUADRO GRIS INFORMATIVO */
-        .alert-text {
-            background-color: #e9ecef;
+        .label-contact { font-weight: bold; width: 130px; }
+        .value-contact { color: #337ab7; }
+
+        /* Cuadro de texto gris */
+        .alert-info {
+            background-color: #f2f2f2;
             padding: 15px;
-            font-size: 12px;
-            line-height: 1.6;
-            color: #666;
-            margin: 20px;
+            font-size: 12.5px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 30px;
             text-align: justify;
-            border-radius: 2px;
         }
 
-        /* BLOQUES DE DATOS */
-        .group-title {
-            background-color: #fdfdfd;
+        /* Bloques de Datos (SIN TABLAS) */
+        .header-block {
+            background-color: #f8f8f8;
             text-align: center;
             font-weight: bold;
             padding: 10px;
             font-size: 13px;
-            border: 1px solid #eee;
-            border-left: none;
-            border-right: none;
-            color: #333;
+            border: 1px solid #ddd;
+            margin-top: 15px;
         }
 
         .data-item {
-            border-bottom: 1px solid #eee;
-            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            padding: 12px 15px;
             display: flex;
             font-size: 13px;
+            align-items: flex-start;
         }
 
-        .data-label { font-weight: bold; width: 180px; flex-shrink: 0; }
-        .data-value { color: #666; word-break: break-word; }
+        .data-label {
+            font-weight: bold;
+            width: 160px; /* Ancho fijo para etiquetas en PC */
+            flex-shrink: 0;
+        }
 
-        /* SIGED BOX */
+        .data-value {
+            color: #555;
+            word-break: break-word;
+        }
+
+        /* Cuadro Verde SIGED */
         .siged-box {
             background-color: #dff0d8;
             border: 1px solid #d6e9c6;
             color: #3c763d;
-            padding: 15px;
-            margin: 20px;
+            padding: 18px;
+            margin-top: 30px;
             font-size: 13px;
-            border-radius: 4px;
         }
 
         .btn-siged {
-            background-color: #fff;
+            background-color: white;
             border: 1px solid #ccc;
-            padding: 5px 10px;
-            margin-top: 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            margin-top: 12px;
+            border-radius: 3px;
             cursor: pointer;
             color: #333;
-            font-size: 12px;
         }
 
-        .portal-footer {
+        .portal-link {
             text-align: right;
-            padding: 0 20px 20px 0;
-            font-size: 12px;
+            margin-top: 20px;
+            font-size: 13px;
         }
 
-        .portal-footer a { color: #337ab7; text-decoration: none; }
+        .portal-link a { color: #337ab7; text-decoration: none; }
 
-        /* --- RESPONSIVIDAD --- */
+        /* RESPONSIVIDAD: Ajuste automático para celulares */
         @media (max-width: 600px) {
-            .wrapper { margin: 10px; }
-            .data-item { flex-direction: column; }
-            .data-label { width: 100%; margin-bottom: 4px; font-size: 12px; }
-            .data-value { font-size: 13px; }
-            .header-logo { padding-left: 15px; }
+            .data-item {
+                flex-direction: column; /* En celular, el valor baja para ganar espacio */
+            }
+            .data-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            .header-logo img {
+                max-width: 110px; /* Logo un poco más pequeño en móviles */
+            }
         }
     </style>
 </head>
 <body>
 
+    <div class="header-logo">
+        <img src="imagen/logo" alt="Logo Conalep" onerror="this.src='imagen/logo.png';">
+    </div>
+
     <div class="wrapper">
-        <div class="header-logo">
-            <img src="imagen/logo" alt="Logo" onerror="this.src='imagen/logo.png';">
-        </div>
+        <div class="title-container">Validación de certificados electrónicos Modelo 2018:</div>
 
-        <div class="validation-header">
-            Validación de certificados electrónicos Modelo 2018:
-        </div>
-
-        <div class="search-container">
+        <div class="search-section">
             <label>¿Desea consultar un folio de certificado CONALEP?</label>
             <input type="text" value="1c421f92-09ba-443b-b068-980725c5f3ae">
             <div class="example">Ejemplo: 1a23b45c-de67-8fg0-1111-6f36ebbbd44</div>
-            <button class="btn-search">
-                <span style="font-size: 12px;">🔍</span> buscar
-            </button>
+            <button class="btn-blue">🔍 buscar</button>
         </div>
 
         <div class="help-center">
             <div class="help-title">¿Cómo te podemos ayudar?</div>
             <div class="contact-info">
                 <div class="contact-row">
-                    <div class="label-c">Correo electrónico:</div>
-                    <div class="value-c">contacto@conalep.edu.mx</div>
+                    <div class="label-contact">Correo electrónico:</div>
+                    <div class="value-contact">contacto@conalep.edu.mx</div>
                 </div>
                 <div class="contact-row">
-                    <div class="label-c">Teléfono:</div>
-                    <div class="value-c">555 480 3700 Ext. 2836, 2881 y 2848</div>
+                    <div class="label-contact">Teléfono:</div>
+                    <div class="value-contact">555 480 3700 Ext. 2836, 2881 y 2848</div>
                 </div>
             </div>
         </div>
 
-        <div class="alert-text">
+        <div class="alert-info">
             La siguiente información fue encontrada en los registros de Control Escolar de esta institución educativa, lo que valida la autenticidad del certificado de estudios emitido de manera electrónica.
         </div>
 
-        <div class="group-title">Datos del estudiante</div>
+        <div class="header-block">Datos del estudiante</div>
         <div class="data-item">
             <div class="data-label">Nombre(s) y apellido(s):</div>
             <div class="data-value">Queluhi Pezquera Cruz</div>
@@ -239,7 +239,7 @@
             <div class="data-value">191510201-4</div>
         </div>
 
-        <div class="group-title">Datos del plantel o servicio educativo</div>
+        <div class="header-block">Datos del plantel o servicio educativo</div>
         <div class="data-item">
             <div class="data-label">Institución educativa emisora:</div>
             <div class="data-value">Colegio Nacional de Educación Profesional Técnica</div>
@@ -253,7 +253,7 @@
             <div class="data-value">21DPT0004U</div>
         </div>
 
-        <div class="group-title">Trayectoria académica y datos del documento</div>
+        <div class="header-block">Trayectoria académica y datos del documento</div>
         <div class="data-item">
             <div class="data-label">Plan de estudios:</div>
             <div class="data-value">Bachillerato, con la carrera Técnica en Mantenimiento de sistemas automáticos y el trayecto específico en Automatización y control de procesos industriales</div>
@@ -292,7 +292,7 @@
             <button class="btn-siged">Verificar en SIGED</button>
         </div>
 
-        <div class="portal-footer">
+        <div class="portal-link">
             <a href="#">Portal CONALEP</a>
         </div>
     </div>
