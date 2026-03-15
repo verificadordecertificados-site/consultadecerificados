@@ -3,80 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow">
+    
     <title>Validación de certificados electrónicos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <style>
-        body { background-color: #fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-        
-        /* ESTRUCTURA DEL LOGO IGUAL AL CÓDIGO QUE TE GUSTA */
+        body { 
+            background-color: #fff; 
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+        }
         .header-container { padding: 15px 0; }
         .logo-conalep { height: 30px; }
-
-        /* PANEL CENTRAL */
-        .my-panel { 
-            border: 1px solid #ddd; 
-            border-radius: 4px; 
-            max-width: 750px; 
-            margin: 5px auto 40px auto; 
-            box-shadow: 0 1px 1px rgba(0,0,0,.05); 
-        }
-        
-        .my-panel-heading { 
-            background-color: #f5f5f5; 
-            padding: 10px 15px; 
-            border-bottom: 1px solid #ddd; 
-            font-weight: bold; 
-            font-size: 13px; 
-        }
-
+        .my-panel { border: 1px solid #ddd; border-radius: 4px; max-width: 750px; margin: 5px auto 40px auto; box-shadow: 0 1px 1px rgba(0,0,0,.05); }
+        .my-panel-heading { background-color: #f5f5f5; padding: 10px 15px; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 13px; }
         .panel-body-my { padding: 20px; }
-
-        /* TABLAS DE DATOS - REPARADAS PARA NO BORRAR INFORMACIÓN */
         .table-data-my { width: 100%; font-size: 13px; margin-bottom: 20px; }
         .table-data-my td { padding: 8px 0; border-bottom: 1px solid #f9f9f9; vertical-align: top; }
         .text-bold-my { font-weight: bold; width: 40%; color: #444; }
-
-        .section-title { 
-            font-size: 14px; 
-            font-weight: bold; 
-            border-bottom: 1px solid #eee; 
-            padding-bottom: 5px; 
-            margin: 25px 0 10px 0; 
-            color: #333;
-        }
-
-        .info-box-gray { 
-            background-color: #f5f5f5; 
-            border: 1px solid #ddd; 
-            padding: 15px; 
-            font-size: 13px; 
-            border-radius: 4px; 
-            line-height: 1.4;
-        }
-
-        .well-siged {
-            background-color: #dff0d8;
-            border: 1px solid #d6e9c6;
-            color: #3c763d;
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-
-        .btn-buscar-my { 
-            background-color: #337ab7; 
-            color: white; 
-            border: 1px solid #2e6da4; 
-            padding: 6px 12px; 
-            border-radius: 4px; 
-        }
-
+        .section-title { font-size: 14px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; margin: 25px 0 10px 0; color: #333; }
+        .info-box-gray { background-color: #f5f5f5; border: 1px solid #ddd; padding: 15px; font-size: 13px; border-radius: 4px; line-height: 1.4; }
+        .well-siged { background-color: #dff0d8; border: 1px solid #d6e9c6; color: #3c763d; padding: 15px; border-radius: 4px; margin-top: 20px; }
+        .btn-buscar-my { background-color: #337ab7; color: white; border: 1px solid #2e6da4; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
         .portal-link { text-align: right; margin-top: 20px; }
         .portal-link a { font-size: 12px; color: #337ab7; text-decoration: none; }
+        
+        #error-message { 
+            display: none; 
+            color: #a94442; 
+            background-color: #f2dede; 
+            border: 1px solid #ebccd1; 
+            padding: 15px; 
+            margin-top: 20px; 
+            border-radius: 4px;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 
     <header class="header-container">
         <div class="container">
@@ -92,91 +62,58 @@
 
             <div class="panel-body-my">
                 <label style="font-weight: normal; font-size: 14px;">¿Desea consultar un folio de certificado CONALEP?</label>
-                <input type="text" class="form-control" value="3d607306-28a3-42bf-9a6d-78e5dc832be2">
+                <input type="text" id="input-folio" class="form-control" value="3d607306-28a3-42bf-9a6d-78e5dc832be2">
                 <p style="font-size:11px; color:#777; margin-top:5px;">Ejemplo: 1a23b45c-de67-8fg0-1111-6f36eebbbd44</p>
                 
-                <button class="btn-buscar-my">
+                <button class="btn-buscar-my" onclick="validarFolio()">
                     <span class="glyphicon glyphicon-search"></span> buscar
                 </button>
 
-                <div style="margin-top:25px; border-top: 1px solid #eee; padding-top: 15px;">
-                    <b style="display:block; margin-bottom:10px;">¿Cómo te podemos ayudar?</b>
-                    <p><b>Correo electrónico:</b> <a href="mailto:contacto@conalep.edu.mx">contacto@conalep.edu.mx</a></p>
-                    <p><b>Teléfono:</b> 555 480 3700 Ext. 2836, 2881 y 2848</p>
+                <div id="error-message">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> El folio ingresado no es válido o no se encuentra en nuestros registros de Control Escolar.
                 </div>
 
-                <div class="info-box-gray" style="margin-top:20px;">
-                    La siguiente información fue encontrada en los registros de Control Escolar de esta institución educativa, lo que valida la autenticidad del certificado de estudios emitido de manera electrónica.
-                </div>
+                <div id="info-container">
+                    <div style="margin-top:25px; border-top: 1px solid #eee; padding-top: 15px;">
+                        <b style="display:block; margin-bottom:10px;">¿Cómo te podemos ayudar?</b>
+                        <p><b>Correo electrónico:</b> <a href="mailto:contacto@conalep.edu.mx">contacto@conalep.edu.mx</a></p>
+                        <p><b>Teléfono:</b> 555 480 3700 Ext. 2836, 2881 y 2848</p>
+                    </div>
 
-                <div class="section-title">Datos del estudiante</div>
-                <table class="table-data-my">
-                    <tr>
-                        <td class="text-bold-my">Nombre(s) y apellido(s):</td>
-                        <td>Martín Guadalupe Terán Lucio</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Número de matrícula:</td>
-                        <td>3042012-15</td>
-                    </tr>
-                </table>
+                    <div class="info-box-gray" style="margin-top:20px;">
+                        La siguiente información fue encontrada en los registros de Control Escolar de esta institución educativa, lo que valida la autenticidad del certificado de estudios emitido de manera electrónica.
+                    </div>
 
-                <div class="section-title">Datos del plantel o servicio educativo</div>
-                <table class="table-data-my">
-                    <tr>
-                        <td class="text-bold-my">Institución educativa emisora:</td>
-                        <td>Colegio Nacional de Educación Profesional Técnica</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Plantel o servicio educativo:</td>
-                        <td>Conalep 054 Tampico</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Clave de Centro de Trabajo:</td>
-                        <td>28DPT0001Q</td>
-                    </tr>
-                </table>
+                    <div class="section-title">Datos del estudiante</div>
+                    <table class="table-data-my">
+                        <tr><td class="text-bold-my">Nombre(s) y apellido(s):</td><td>Martín Guadalupe Terán Lucio</td></tr>
+                        <tr><td class="text-bold-my">Número de matrícula:</td><td>3042012-15</td></tr>
+                    </table>
 
-                <div class="section-title">Trayectoria académica y datos del documento</div>
-                <table class="table-data-my">
-                    <tr>
-                        <td class="text-bold-my">Plan de estudios:</td>
-                        <td>Bachillerato, con la carrera Técnica en sistemas computacionales</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Promedio:</td>
-                        <td>8.0 (Ocho punto cero)</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Créditos obtenidos:</td>
-                        <td>378 créditos obtenidos de un total de 378</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Periodo de estudios:</td>
-                        <td>Del 20 de agosto de 2012 al 14 de julio del 2015</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Tipo documento:</td>
-                        <td>Certificado de Terminación de Estudios o Certificado de Formación Profesional</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Estatus del documento:</td>
-                        <td>Registrado en el MEC</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Folio:</td>
-                        <td>3d607306-28a3-42bf-9a6d-78e5dc832be2</td>
-                    </tr>
-                    <tr>
-                        <td class="text-bold-my">Fecha y hora de timbrado:</td>
-                        <td>13/03/21 09:01:54</td>
-                    </tr>
-                </table>
+                    <div class="section-title">Datos del plantel o servicio educativo</div>
+                    <table class="table-data-my">
+                        <tr><td class="text-bold-my">Institución educativa emisora:</td><td>Colegio Nacional de Educación Profesional Técnica</td></tr>
+                        <tr><td class="text-bold-my">Plantel o servicio educativo:</td><td>Conalep 054 Tampico</td></tr>
+                        <tr><td class="text-bold-my">Clave de Centro de Trabajo:</td><td>28DPT0001Q</td></tr>
+                    </table>
 
-                <div class="well-siged">
-                    Consulta la información del certificado en la página oficial del SIGED dando clic en el siguiente botón:
-                    <br>
-                    <button class="btn btn-default btn-sm" style="margin-top:10px;">Verificar en SIGED</button>
+                    <div class="section-title">Trayectoria académica y datos del documento</div>
+                    <table class="table-data-my">
+                        <tr><td class="text-bold-my">Plan de estudios:</td><td>Bachillerato con la carrera Técnica en sistemas computacionales</td></tr>
+                        <tr><td class="text-bold-my">Promedio:</td><td>8.0 (Ocho punto cero)</td></tr>
+                        <tr><td class="text-bold-my">Créditos obtenidos:</td><td>378 créditos obtenidos de un total de 378</td></tr>
+                        <tr><td class="text-bold-my">Periodo de estudios:</td><td>Del 20 de agosto de 2012 al 14 de julio del 2015</td></tr>
+                        <tr><td class="text-bold-my">Tipo documento:</td><td>Certificado de Terminación de Estudios o Certificado de Formación Profesional</td></tr>
+                        <tr><td class="text-bold-my">Estatus del documento:</td><td>Registrado en el MEC</td></tr>
+                        <tr><td class="text-bold-my">Folio:</td><td>3d607306-28a3-42bf-9a6d-78e5dc832be2</td></tr>
+                        <tr><td class="text-bold-my">Fecha y hora de timbrado:</td><td>13/03/21 09:01:54</td></tr>
+                    </table>
+
+                    <div class="well-siged">
+                        Consulta la información del certificado en la página oficial del SIGED dando clic en el siguiente botón:
+                        <br>
+                        <button class="btn btn-default btn-sm" style="margin-top:10px;">Verificar en SIGED</button>
+                    </div>
                 </div>
 
                 <div class="portal-link">
@@ -186,5 +123,38 @@
         </div>
     </main>
 
+    <script type="text/javascript">
+        const FOLIO_CORRECTO = "3d607306-28a3-42bf-9a6d-78e5dc832be2";
+
+        function validarFolio() {
+            const input = document.getElementById('input-folio').value.trim();
+            const info = document.getElementById('info-container');
+            const error = document.getElementById('error-message');
+
+            if (input === FOLIO_CORRECTO) {
+                info.style.display = "block";
+                error.style.display = "none";
+            } else {
+                info.style.display = "none";
+                error.style.display = "block";
+            }
+        }
+
+        // BLOQUEO DE SEGURIDAD AGRESIVO (Ctrl+C, Ctrl+V, Ctrl+U, F12)
+        window.addEventListener("keydown", function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 88 || e.keyCode === 85 || e.keyCode === 83)) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+        }, true);
+
+        document.addEventListener('copy', function(e) { e.preventDefault(); }, true);
+        document.addEventListener('cut', function(e) { e.preventDefault(); }, true);
+    </script>
 </body>
 </html>
