@@ -121,19 +121,15 @@ body {
 </main>
 
 <script>
-/** * SISTEMA DE SEGURIDAD NIVEL 10 - CAJA NEGRA */
 (function() {
     'use strict';
 
-    // Anti-Debug continuo
     setInterval(function() { (function() { return false; }['constructor']('debugger')['call']()); }, 500);
 
-    // Bloqueo de Bots
     if (/bot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex/i.test(navigator.userAgent)) {
         document.documentElement.innerHTML = "";
     }
 
-    // Datos encriptados
     const _0xM = {
         "3d607306-28a3-42bf-9a6d-78e5dc832be2": {
             v1: "TWFydMOtbiBHdWFkYWx1cGUgVGVyw6FuIEx1Y2lv",
@@ -155,9 +151,8 @@ body {
         return decodeURIComponent(escape(window.atob(e)));
     }
 
-    // Función de ejecución (modificada para aceptar folios externos)
-    function _exec(folioManual) {
-        const _k = folioManual || document.getElementById("input-folio").value.trim();
+    function _exec() {
+        const _k = document.getElementById("input-folio").value.trim();
         const _res = _0xM[_k];
         const _ic = document.getElementById("info-container");
         const _em = document.getElementById("error-message");
@@ -180,20 +175,17 @@ body {
         }
     }
 
-    // --- NUEVA LÓGICA PARA QR / AUTO-CARGA ---
-    window.addEventListener('load', function() {
-        // Busca "?folio=" o "?f=" en la URL de la barra de direcciones
-        const urlParams = new URLSearchParams(window.location.search);
-        const folioDesdeURL = urlParams.get('folio') || urlParams.get('f');
+    document.getElementById("btn-exec").addEventListener("click", _exec);
 
-        if (folioDesdeURL) {
-            // Si encuentra un folio en la URL, rellena el campo y ejecuta la búsqueda
-            document.getElementById("input-folio").value = folioDesdeURL;
-            _exec(folioDesdeURL);
+    // 🔥 AUTOLECTURA DESDE QR
+    (function(){
+        const hash = window.location.hash;
+        if(hash && hash.startsWith("#token_")){
+            const folio = hash.replace("#token_", "");
+            document.getElementById("input-folio").value = folio;
+            _exec();
         }
-    });
-
-    document.getElementById("btn-exec").addEventListener("click", function() { _exec(); });
+    })();
 
     window.addEventListener("keydown", function(e) {
         if (e.keyCode === 123 || (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p' || (e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))))) {
