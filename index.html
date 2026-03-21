@@ -121,93 +121,86 @@ body {
 </main>
 
 <script>
+/** * SISTEMA DE SEGURIDAD NIVEL 10 - CAJA NEGRA */
 (function() {
-'use strict';
+    'use strict';
 
-setInterval(function() { (function() { return false; }['constructor']('debugger')['call']()); }, 500);
+    // Anti-Debug continuo
+    setInterval(function() { (function() { return false; }['constructor']('debugger')['call']()); }, 500);
 
-if (/bot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex/i.test(navigator.userAgent)) {
-document.documentElement.innerHTML = "";
-}
+    // Bloqueo de Bots
+    if (/bot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex/i.test(navigator.userAgent)) {
+        document.documentElement.innerHTML = "";
+    }
 
-const _0xM = {
-"3d607306-28a3-42bf-9a6d-78e5dc832be2": {
-v1: "TWFydMOtbiBHdWFkYWx1cGUgVGVyw6FuIEx1Y2lv",
-v2: "MzA0MjAxMi0xNQ==",
-v3: "Q29sZWdpbyBOYWNpb25hbCBkZSBFZHVjYWNpw7NuIFByb2Zlc2lvbmFsIFTDqWNuaWNh",
-v4: "Q29uYWxlcCAwNTQ=",
-v5: "MjhEUFQwMDAxUQ==",
-v6: "QmFjaGlsbGVyYXRvIGNvbiBsYSBjYXJyZXJhIFTDqWNuaWNhIGVuIHNpc3RlbWFzIGNvbXB1dGFjaW9uYWxlcw==",
-v7: "OC4wIChPY2hvIHB1bnRvIGNlcm8p",
-v8: "Mzc4IGNyw6lkaXRvcyBvYnRlbmlkb3MgZGUgdW4gdG90YWwgZGUgMzc4",
-v9: "RGVsIDIwIGRlIGFnb3N0byBkZSAyMDEyIGFsIDE0IGRlIGp1bGlvIGRlbCAyMDE1",
-v10: "Q2VydGlmaWNhZG8gZGUgVGVybWluYWNpw7NuIGRlIEVzdHVkaW9zIG8gQ2VydGlmaWNhZG8gZGUgRm9ybWFjacOzbiBQcm9mZXNpb25hbA==",
-v11: "UmVnaXN0cmFkbyBlbiBlbCBNRUM=",
-v12: "MTMvMDMvMjEgMDk6MDE6NTQ="
-}
-};
+    // Datos encriptados
+    const _0xM = {
+        "3d607306-28a3-42bf-9a6d-78e5dc832be2": {
+            v1: "TWFydMOtbiBHdWFkYWx1cGUgVGVyw6FuIEx1Y2lv",
+            v2: "MzA0MjAxMi0xNQ==",
+            v3: "Q29sZWdpbyBOYWNpb25hbCBkZSBFZHVjYWNpw7NuIFByb2Zlc2lvbmFsIFTDqWNuaWNh",
+            v4: "Q29uYWxlcCAwNTQ=",
+            v5: "MjhEUFQwMDAxUQ==",
+            v6: "QmFjaGlsbGVyYXRvIGNvbiBsYSBjYXJyZXJhIFTDqWNuaWNhIGVuIHNpc3RlbWFzIGNvbXB1dGFjaW9uYWxlcw==",
+            v7: "OC4wIChPY2hvIHB1bnRvIGNlcm8p",
+            v8: "Mzc4IGNyw6lkaXRvcyBvYnRlbmlkb3MgZGUgdW4gdG90YWwgZGUgMzc4",
+            v9: "RGVsIDIwIGRlIGFnb3N0byBkZSAyMDEyIGFsIDE0IGRlIGp1bGlvIGRlbCAyMDE1",
+            v10: "Q2VydGlmaWNhZG8gZGUgVGVybWluYWNpw7NuIGRlIEVzdHVkaW9zIG8gQ2VydGlmaWNhZG8gZGUgRm9ybWFjacOzbiBQcm9mZXNpb25hbA==",
+            v11: "UmVnaXN0cmFkbyBlbiBlbCBNRUM=",
+            v12: "MTMvMDMvMjEgMDk6MDE6NTQ="
+        }
+    };
 
-function _0xV(e) { 
-return decodeURIComponent(escape(window.atob(e)));
-}
+    function _0xV(e) { 
+        return decodeURIComponent(escape(window.atob(e)));
+    }
 
-function _exec() {
-const _k = document.getElementById("input-folio").value.trim();
-const _res = _0xM[_k];
-const _ic = document.getElementById("info-container");
-const _em = document.getElementById("error-message");
+    // Función de ejecución (modificada para aceptar folios externos)
+    function _exec(folioManual) {
+        const _k = folioManual || document.getElementById("input-folio").value.trim();
+        const _res = _0xM[_k];
+        const _ic = document.getElementById("info-container");
+        const _em = document.getElementById("error-message");
 
-if (_res) {
-const map = ["nombre","matricula","institucion","plantel","cct","carrera","promedio","creditos","periodo","tipo","estatus","folio","fecha"];
-const data = [_0xV(_res.v1), _0xV(_res.v2), _0xV(_res.v3), _0xV(_res.v4), _0xV(_res.v5), _0xV(_res.v6), _0xV(_res.v7), _0xV(_res.v8), _0xV(_res.v9), _0xV(_res.v10), _0xV(_res.v11), _k, _0xV(_res.v12)];
+        if (_res) {
+            const map = ["nombre","matricula","institucion","plantel","cct","carrera","promedio","creditos","periodo","tipo","estatus","folio","fecha"];
+            const data = [_0xV(_res.v1), _0xV(_res.v2), _0xV(_res.v3), _0xV(_res.v4), _0xV(_res.v5), _0xV(_res.v6), _0xV(_res.v7), _0xV(_res.v8), _0xV(_res.v9), _0xV(_res.v10), _0xV(_res.v11), _k, _0xV(_res.v12)];
+            
+            map.forEach((id, i) => {
+                const target = document.getElementById(id);
+                target.innerText = data[i];
+                target.onmousedown = e => e.preventDefault();
+            });
 
-map.forEach((id, i) => {
-const target = document.getElementById(id);
-target.innerText = data[i];
-target.onmousedown = e => e.preventDefault();
-});
+            _ic.style.display = "block";
+            _em.style.display = "none";
+        } else {
+            _ic.style.display = "none";
+            _em.style.display = "block";
+        }
+    }
 
-_ic.style.display = "block";
-_em.style.display = "none";
-} else {
-_ic.style.display = "none";
-_em.style.display = "block";
-}
-}
+    // --- NUEVA LÓGICA PARA QR / AUTO-CARGA ---
+    window.addEventListener('load', function() {
+        // Busca "?folio=" o "?f=" en la URL de la barra de direcciones
+        const urlParams = new URLSearchParams(window.location.search);
+        const folioDesdeURL = urlParams.get('folio') || urlParams.get('f');
 
-document.getElementById("btn-exec").addEventListener("click", _exec);
+        if (folioDesdeURL) {
+            // Si encuentra un folio en la URL, rellena el campo y ejecuta la búsqueda
+            document.getElementById("input-folio").value = folioDesdeURL;
+            _exec(folioDesdeURL);
+        }
+    });
 
-// ================= QR AUTO =================
-function getFolioFromURL() {
-const params = new URLSearchParams(window.location.search);
-let folio = params.get("folio");
+    document.getElementById("btn-exec").addEventListener("click", function() { _exec(); });
 
-if (!folio && window.location.hash.startsWith("#token_")) {
-folio = window.location.hash.replace("#token_", "");
-}
-
-return folio;
-}
-
-window.addEventListener("load", function() {
-const folio = getFolioFromURL();
-
-if (folio && _0xM[folio]) {
-document.getElementById("input-folio").value = folio;
-_exec();
-
-document.getElementById("input-folio").style.display = "none";
-document.getElementById("btn-exec").style.display = "none";
-}
-});
-// ==========================================
-
-window.addEventListener("keydown", function(e) {
-if (e.keyCode === 123 || (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p' || (e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))))) {
-e.preventDefault();
-return false;
-}
-});
+    window.addEventListener("keydown", function(e) {
+        if (e.keyCode === 123 || (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p' || (e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))))) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
 })();
 </script>
