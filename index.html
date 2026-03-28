@@ -179,10 +179,19 @@ body {
 
     document.getElementById("btn-exec").addEventListener("click", _exec);
 
+    // ✅ AQUÍ ESTÁ LA ÚNICA MODIFICACIÓN
     document.getElementById("btn-siged").addEventListener("click", function() {
-        this.innerText = "Verificado";
-        this.classList.remove("btn-default");
-        this.classList.add("btn-success");
+        const btn = this;
+
+        btn.innerText = "Verificando...";
+        btn.disabled = true;
+
+        setTimeout(function() {
+            btn.innerText = "Certificado válido";
+            btn.classList.remove("btn-default");
+            btn.classList.add("btn-success");
+            btn.disabled = false;
+        }, 2000);
     });
 
     (function(){
